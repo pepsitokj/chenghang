@@ -1,0 +1,104 @@
+$(".topSer").click(function () {
+    var height = $(".search").height();
+    if (height == 0) {
+        $(".search").animate({
+            "height": 158
+        })
+    } else {
+        $(".search").animate({
+            "height": 0
+        })
+    }
+});
+jQuery(".nav_cont").slide({
+    type: "menu",
+    titCell: ".nLi",
+    targetCell: ".sub",
+    effect: "slideDown",
+    delayTime: 300,
+    triggerTime: 0,
+    defaultPlay: false,
+    returnDefault: true
+});
+var win_width = $(window).width();
+var win_height = $(window).height();
+$(window).scroll(function () {
+    var sT = $(window).scrollTop();
+    if (sT > 180) {
+        $(".nav").addClass("navFixed");
+    } else {
+        $(".nav").removeClass("navFixed");
+    }
+});
+$(".header .ico").click(function () {
+    if ($(".search_sm").is(':hidden')) {
+        $(".search_sm").css({
+            "display": "block"
+        });
+        $(".nav").css({
+            "display": "block"
+        });
+    } else {
+        $(".search_sm").css({
+            "display": "none"
+        });
+        $(".nav").css({
+            "display": "none"
+        });
+    }
+});
+var sildeSwiper = new Swiper('.swiperBox', {
+    pagination: '.pagination',
+    paginationClickable: true,
+    autoplay: 4000,
+    loop: true
+});
+
+var homeNews = new Swiper('#i_news_cont', {
+    speed: 500,
+    onSlideChangeStart: function () {
+        $("#i_news_tit .on").removeClass('on');
+        $("#i_news_tit ul li").eq(homeNews.activeIndex).addClass('on');
+    }
+});
+$("#i_news_tit ul li").on('mouseover mousedown', function (e) {
+    e.preventDefault();
+    $("#i_news_tit .on").removeClass('on');
+    $(this).addClass('on');
+    homeNews.swipeTo($(this).index())
+});
+$("#i_news_tit ul li").click(function (e) {
+    e.preventDefault()
+});
+var ztSwiper = new Swiper('#zt_swiper', {
+    pagination: '.i_zt_pagination',
+    paginationClickable: true,
+    autoplay: 4000,
+    loop: true
+});
+$(".link ul li").hover((function () {
+    $(this).addClass("on");
+    $(this).find(".content").css({
+        "display": "block"
+    })
+}), function () {
+    $(this).removeClass("on");
+    $(this).find(".content").css({
+        "display": "none"
+    })
+});
+jQuery(".p_menu").slide({
+    titCell: "h3",
+    targetCell: ".list",
+    defaultIndex: 1,
+    effect: "slideDown",
+    delayTime: 300,
+    trigger: "click"
+});
+
+var newsSwiper = new Swiper('.p_news_slide', {
+    pagination: '.pagination',
+    paginationClickable: true,
+    autoplay: 4000,
+    loop: true
+});
